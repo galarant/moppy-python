@@ -5,7 +5,9 @@ from Arduino import Arduino
 
 from ..import settings
 
+
 class Pin(object):
+
     """
     Represents a pin on the Arduino board
 

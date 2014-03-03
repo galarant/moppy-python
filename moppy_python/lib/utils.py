@@ -3,6 +3,8 @@ import serial
 import platform
 
 # A function that tries to list serial ports on most common platforms
+
+
 def list_serial_ports():
     system_name = platform.system()
     if system_name == "Windows":

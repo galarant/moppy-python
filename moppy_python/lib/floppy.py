@@ -5,7 +5,9 @@ import time
 from .. import settings
 from .arduino import Pin
 
+
 class Floppy(object):
+
     """
     Represents a floppy drive connected to the Arduino
 
@@ -34,7 +36,9 @@ class Floppy(object):
             self.step_pin.pulse()
             time.sleep(float(1) / speed)
 
+
 class FloppyArray(object):
+
     """
     Represents the array of floppy drives connected
 
@@ -46,5 +50,5 @@ class FloppyArray(object):
 
         """
         self.floppy_drives = []
-        for x in xrange(2,(settings.FLOPPY_DRIVE_COUNT * 2) + 2, 2):
+        for x in xrange(2, (settings.FLOPPY_DRIVE_COUNT * 2) + 2, 2):
             self.floppy_drives.append(Floppy(len(self.floppy_drives), x, x + 1))
