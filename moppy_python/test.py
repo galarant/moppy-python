@@ -19,6 +19,7 @@ REQUIRED_SETTINGS = ('ARDUINO_BAUD_RATE',
                      'DEFAULT_SPEED',
                      'MAX_SPEED')
 
+
 class MoppyTest(TestCase):
 
     def setUp(self):
