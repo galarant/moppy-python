@@ -1,4 +1,3 @@
 nose
 autopep8
 pyserial
-arduino-python

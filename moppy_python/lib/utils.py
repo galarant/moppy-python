@@ -24,3 +24,12 @@ def list_serial_ports():
     else:
         # Assume Linux or something else
         return glob.glob('/dev/ttyS*') + glob.glob('/dev/ttyUSB*')
+
+def reset(arduino):
+    """
+    Sends a special byte sequence that resets all drives
+
+    """
+    arduino.write(chr(100))
+    arduino.write(chr(100))
+    arduino.write(chr(100))
