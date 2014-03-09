@@ -39,6 +39,7 @@ class Floppy(object):
         self.arduino.write(chr(0))
         self.arduino.write(chr(0))
 
+
 def initialize_floppy_array(num_drives, arduino):
     """
     Sets up an inital array of floppy drives assuming the standard pin wiring

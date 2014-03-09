@@ -15,10 +15,11 @@ REQUIRED_SETTINGS = ('DEFAULT_SERIAL_PORT',
                      'FLOPPY_DRIVE_COUNT',
                      'SEMITONE_SCALE',
                      'MAJOR_SCALE',
-                    )
+                     )
 
 
 class SoftwareTest(TestCase):
+
     def setUp(self):
         """
         Ensure that settings are properly configured
@@ -27,7 +28,6 @@ class SoftwareTest(TestCase):
         for required_setting in REQUIRED_SETTINGS:
             if not hasattr(settings, required_setting):
                 raise Exception('Need to set in moppy_project/settings.py in order to run the test suite' % required_setting)
-
 
     def test_detect_serial_ports(self):
         """
