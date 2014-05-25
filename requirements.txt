@@ -1,3 +1,5 @@
 nose
 autopep8
 pyserial
+mido
+python-rtmidi

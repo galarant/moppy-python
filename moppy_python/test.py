@@ -2,11 +2,12 @@ from __future__ import absolute_import
 from unittest import TestCase
 from nose.tools import eq_, ok_, with_setup
 
+import os
 import time
 import serial
 
 from . import settings
-from .lib import floppy, utils
+from .lib import floppy, utils, player
 
 
 REQUIRED_SETTINGS = ('DEFAULT_SERIAL_PORT',
@@ -64,15 +65,11 @@ class HardwareTest(TestCase):
         utils.reset(self.arduino)
 
     def test_floppy_drives(self):
-        """
-        Test that the floppy drives are responding and can play notes
-
-        """
         for floppy_drive in self.floppy_drives:
             for note in settings.MAJOR_SCALE:
                 print "SENDING NOTE %s TO FLOPPY %s" % (note, floppy_drive.id)
                 floppy_drive.play_note(note)
-                time.sleep(0.5)
+                time.sleep(0.125)
             print "RESTING ON FLOPPY %s" % (floppy_drive.id)
             floppy_drive.rest()
 
@@ -80,5 +77,14 @@ class HardwareTest(TestCase):
             print "SENDING NOTE %s TO ALL DRIVES SIMULTANEOUSLY" % note
             for floppy_drive in self.floppy_drives:
                 floppy_drive.play_note(note)
-            time.sleep(0.5)
+            time.sleep(0.125)
         utils.reset(self.arduino)
+
+    def test_song(self):
+        """
+        Test that we can play a song
+
+        """
+        midi_filename = os.path.dirname(os.path.abspath(__file__)) + '/../midi/Zelda.mid'
+        midi_player = player.MidiPlayer(midi_filename, self.arduino, self.floppy_drives)
+        midi_player.play()

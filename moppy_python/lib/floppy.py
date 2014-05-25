@@ -20,11 +20,13 @@ class Floppy(object):
         self.direction_pin = direction_pin
         self.arduino = arduino
 
-    def play_note(self, note):
+    def play_note(self, note, is_midi=False):
         """
         Plays a note
 
         """
+        if is_midi:
+            note = settings.SEMITONE_SCALE[note]
         note = note / settings.ARDUINO_RESOLUTION
         self.arduino.write(chr(self.control_pin))
         self.arduino.write(chr(note >> 8))
