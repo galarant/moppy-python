@@ -6,7 +6,9 @@ from mido.midifiles import MidiFile
 
 from . import floppy, utils
 
+
 class MidiPlayer(object):
+
     """
     This is the object that will send MIDI files to the floppy array for playback
 
@@ -51,7 +53,7 @@ class MidiPlayer(object):
                     for drive in drives:
                         drive.play_note(0)
             except IndexError:
-                pass #sorry brah. MIDI file has more channels than you can handle
+                pass  # sorry brah. MIDI file has more channels than you can handle
             except AttributeError:
-                pass #whateverz
+                pass  # whateverz
         utils.reset(self.arduino)
